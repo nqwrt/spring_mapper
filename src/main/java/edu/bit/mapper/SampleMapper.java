@@ -1,4 +1,4 @@
-package com.bit.mapper;
+package edu.bit.mapper;
 
 import org.apache.ibatis.annotations.Select;
 

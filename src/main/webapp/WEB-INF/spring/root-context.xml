@@ -28,5 +28,5 @@
 	</bean> -->
 
 	<!-- 	Mapper Interface -->
-	 <mybatis-spring:scan base-package="com.bit.mapper"/> 
+	 <mybatis-spring:scan base-package="edu.bit.mapper"/> 
 </beans>

@@ -5,8 +5,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
-import com.bit.mapper.IBoardMapper;
+
 import edu.bit.ex.vo.BoardVO;
+import edu.bit.mapper.IBoardMapper;
 
 @Service
 public class BoardService {
