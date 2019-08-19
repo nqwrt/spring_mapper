@@ -21,7 +21,7 @@
                 ORDER BY bid desc
              
             ) A
-    )WHERE RNUM > #{startNum} AND RNUM <= #{endNum}
+    )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}
   	]]>
 	</select>
 

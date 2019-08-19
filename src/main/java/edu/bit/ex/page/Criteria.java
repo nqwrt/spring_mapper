@@ -12,8 +12,9 @@ public class Criteria {
     	if(page == 1)
     		startNum = 1;
     	else{
-    		startNum = page * perPageNum;
-    	}	
+    		startNum = getEndNum() - perPageNum +1 ;
+    	}
+    	System.out.println("시작번호" + startNum);
 		return startNum;
 	}
 
@@ -22,7 +23,9 @@ public class Criteria {
 	}
 
 	public int getEndNum() {
-		endNum  = getStartNum() + 10;
+		endNum  =  page * getPerPageNum();
+		//endNum  = getStartNum() + getPerPageNum();		
+		System.out.println("엔드번호" + endNum);
 		return endNum;
 	}
 
