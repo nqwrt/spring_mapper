@@ -5,9 +5,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
+import edu.bit.ex.page.Criteria;
 import edu.bit.ex.vo.BoardVO;
 
-public interface IBoardMapper {
+public interface BoardMapper {
 
 	@Select("select bId, bName, bTitle, bContent, bDate, bHit, bGroup, bStep, bIndent from mvc_board order by bGroup desc, bStep asc")
 	public List<BoardVO> selectBoardList();
@@ -18,6 +19,9 @@ public interface IBoardMapper {
 	@Select("select * from mvc_board where bId = #{bId}")
 	public BoardVO selectBoardOne(String bId);
 	
+	@Select("select count(*) from mvc_board")
+	public int selectAllBoard();
 	
+    public List<BoardVO> selectBoardListPage(Criteria criteria); ;
  
 }

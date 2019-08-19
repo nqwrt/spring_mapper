@@ -11,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import edu.bit.ex.page.Criteria;
+import edu.bit.ex.page.PageMaker;
 import edu.bit.ex.service.BoardService;
 import edu.bit.ex.vo.BoardVO;
 
@@ -92,6 +95,30 @@ public class BController {
 		//boardService.deleteBoardOne(bId); 
 		
 		return "redirect:list";
+	}
+	
+	@RequestMapping("/list2")
+	public void list3(Criteria criteria, Model model) throws Exception {
+		System.out.println("list2()");
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		System.out.println(criteria.getPerPageNum());
+		System.out.println(criteria.getPage());
+		
+   
+	    int totalCount = boardService.selectAllBoard();
+	    System.out.println(totalCount);
+	    System.out.println("전체 게시물 수를 구함:" + totalCount);
+		pageMaker.setTotalCount(totalCount);
+       
+		List<BoardVO> boardList = boardService.selectBoardListPage(criteria); 
+		
+		model.addAttribute("list", boardList);
+		model.addAttribute("pageMaker", pageMaker);
+
+		//return "redirect:list";
 	}
 	
 }

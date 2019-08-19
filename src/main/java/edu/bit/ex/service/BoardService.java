@@ -6,14 +6,15 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import edu.bit.ex.page.Criteria;
 import edu.bit.ex.vo.BoardVO;
-import edu.bit.mapper.IBoardMapper;
+import edu.bit.mapper.BoardMapper;
 
 @Service
 public class BoardService {
 
 	@Inject
-	IBoardMapper boardMapper;
+	BoardMapper boardMapper;
 	
     public List<BoardVO> selectBoardList() throws Exception {
 		return boardMapper.selectBoardList();
@@ -26,6 +27,14 @@ public class BoardService {
 
     public BoardVO selectBoardOne(String bId) throws Exception {
 		return boardMapper.selectBoardOne(bId);
+    }
+    
+    public List<BoardVO> selectBoardListPage(Criteria criteria) throws Exception {
+		return boardMapper.selectBoardListPage(criteria);
+    }
+    
+    public int selectAllBoard() throws Exception {
+		return boardMapper.selectAllBoard();
     }
     
     /*

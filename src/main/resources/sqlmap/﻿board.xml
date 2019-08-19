@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="edu.bit.mapper.BoardMapper">
+
+	<!--page=2&perPageNum=10 -->
+    <select id="selectBoardListPage" resultType="edu.bit.ex.vo.BoardVO" parameterType="edu.bit.ex.page.Criteria">
+	<![CDATA[
+	SELECT * FROM
+	(
+        SELECT
+            A.*,
+            ROWNUM AS RNUM,
+            COUNT(*) OVER() AS TOTCNT
+        FROM
+            (
+                SELECT
+                    *
+                FROM
+                    mvc_board
+                ORDER BY bid desc
+             
+            ) A
+    )WHERE RNUM > #{startNum} AND RNUM <= #{endNum}
+  	]]>
+	</select>
+
+</mapper>
+
