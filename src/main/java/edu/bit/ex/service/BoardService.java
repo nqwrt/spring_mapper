@@ -37,6 +37,15 @@ public class BoardService {
 		return boardMapper.selectAllBoard();
     }
     
+    public void updateShape(BoardVO param) throws Exception {
+    	boardMapper.updateShape(param);
+    }
+    
+    public void insertReply(BoardVO param) throws Exception {
+    	boardMapper.insertReply(param);
+    }
+    
+    
     /*
     public List<BoardVO> selectBoardListPage(Criteria criteria)  {
 		return sqlSession.selectList("selectBoardListPage",criteria);

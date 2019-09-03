@@ -1,0 +1,1 @@
+insert into mvc_board (bId, bName, bTitle, bContent, bHit, bGroup, bStep, bIndent) values (mvc_board_seq.nextval, '홍길동', '테스트용', '자바용 테스트다', 0, mvc_board_seq.currval, 0, 0 );

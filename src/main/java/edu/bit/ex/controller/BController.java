@@ -73,7 +73,7 @@ public class BController {
 		System.out.println("reply_view()");
 
 		String bId = request.getParameter("bId");		
-		//model.addAttribute("reply_view", boardService.selectBoardOne(bId));
+		model.addAttribute("reply_view", boardService.selectBoardOne(bId));
 		return "reply_view";
 	}
 	
@@ -81,8 +81,13 @@ public class BController {
 	public String reply(BoardVO boardVO,HttpServletRequest request, Model model) throws Exception {
 		System.out.println("reply()");
 
-		//boardService.updateShape(boardVO); 
-		//boardService.insertReply(boardVO);	
+		//트랜잭션을 위한 예제.
+		
+		boardService.updateShape(boardVO);
+		
+		//에러를 내기 위한 일부러 null을 만들어 버림
+		boardVO.setbName(null);
+		boardService.insertReply(boardVO);	
 		
 		return "redirect:list";
 	}
