@@ -1,5 +1,6 @@
 package edu.bit.ex.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -78,7 +79,7 @@ public class BController {
 		return "reply_view";
 	}
 	
-	@Transactional
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("/reply")
 	public String reply(BoardVO boardVO,HttpServletRequest request, Model model) throws Exception {
 		System.out.println("reply()");

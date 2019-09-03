@@ -2,6 +2,8 @@ package edu.bit.mapper;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
+
 import javax.inject.Inject;
 
 import org.junit.Ignore;
@@ -33,7 +35,7 @@ public class BoardMapperTest {
 	
 	@Transactional
 	@Test
-	public void testTransaction() throws Exception {
+	public void testTransaction() throws SQLException {
 
 		BoardVO boardVO = boardMapper.selectBoardOne("6665");
 		
