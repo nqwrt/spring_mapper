@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -77,6 +78,7 @@ public class BController {
 		return "reply_view";
 	}
 	
+	@Transactional
 	@RequestMapping("/reply")
 	public String reply(BoardVO boardVO,HttpServletRequest request, Model model) throws Exception {
 		System.out.println("reply()");
