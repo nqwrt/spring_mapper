@@ -44,10 +44,14 @@ public class BController {
 		return "write_view";
 	}
 	
+	//@Transactional
 	@RequestMapping("/write")
 	public String write(BoardVO boardVO, Model model) throws Exception {
 		System.out.println("write()");
 
+		boardService.insertBoard(boardVO);
+		
+		boardVO = null;
 		boardService.insertBoard(boardVO);
 		
 		return "redirect:list";

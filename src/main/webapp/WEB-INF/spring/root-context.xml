@@ -4,9 +4,11 @@
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
@@ -33,30 +35,18 @@
 
 	<!-- 	Mapper Interface -->
 	 <mybatis-spring:scan base-package="edu.bit.mapper"/> 
-	 
 
-	<!-- Transaction을 위한 AOP 설정 -->
-	<!--  //주석처리
-	<aop:config proxy-target-class="true">
-		<aop:pointcut id="servicePublicMethod" expression="execution(public * com.freehoon.web.board..*(int))" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePublicMethod" />
-	</aop:config>
-	 -->	
+ 
+<!-- 	<aop:config proxy-target-class="true"> 
+	<aop:pointcut id="controllerOperation" expression="execution(public * com.spring.web..controller.*Controller.*(..))" /> 
+	</aop:config> -->
 
-	<!-- 선언적 Transaction 설정  -->
-	<!-- 	 //주석처리
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="getBoardContent" rollback-for="Exception" />
-		</tx:attributes>    
-	</tx:advice>
-	 -->
+
 	
-
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
+<!-- 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
 		<property name="dataSource" ref="dataSource" /> 
-	</bean> 
-
+	</bean>  -->
+	
 <!-- 	<tx:annotation-driven transaction-manager="transactionManager" />   -->
 
 

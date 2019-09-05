@@ -33,18 +33,23 @@ public class BoardMapperTest {
 		System.out.println(boardVO.getbHit());
 	}
 	
-	@Transactional
+	@Transactional(rollbackFor=Exception.class)
 	@Test
-	public void testTransaction() throws SQLException {
+	public void testTransaction()  {
+		
+		try {
+			BoardVO boardVO = boardMapper.selectBoardOne("6665");
+			
+			boardMapper.insertBoard(boardVO);
+			
+			
+			//에러를 내기 위한 일부러 null을 만들어 버림
+			boardVO.setbName(null);
+			boardMapper.insertBoard(boardVO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-		BoardVO boardVO = boardMapper.selectBoardOne("6665");
-		
-		boardMapper.updateShape(boardVO);
-		
-		
-		//에러를 내기 위한 일부러 null을 만들어 버림
-		boardVO.setbName(null);
-		boardMapper.insertReply(boardVO);
 	}
 
 
