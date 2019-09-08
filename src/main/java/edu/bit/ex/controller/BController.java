@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,18 +46,23 @@ public class BController {
 		return "write_view";
 	}
 	
-	//@Transactional
+	@Transactional()
 	@RequestMapping("/write")
 	public String write(BoardVO boardVO, Model model) throws Exception {
 		System.out.println("write()");
-
+		
 		boardService.insertBoard(boardVO);
 		
-		boardVO = null;
+		//boardVO = null;
+		
 		boardService.insertBoard(boardVO);
 		
+		//트랜잭션 전파 예
+		boardService.tranTest();
+				
 		return "redirect:list";
 	}
+	
 	
 	@RequestMapping("/content_view")
 	public String content_view(HttpServletRequest request, Model model) throws Exception{

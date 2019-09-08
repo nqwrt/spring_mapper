@@ -5,6 +5,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import edu.bit.ex.page.Criteria;
 import edu.bit.ex.vo.BoardVO;
@@ -20,9 +23,12 @@ public class BoardService {
 		return boardMapper.selectBoardList();
     }
     
-	//boardService.insertBoard(boardVO);
+	//@Transactional(propagation=Propagation.REQUIRES_NEW)  
+	//@Transactional()  
     public void insertBoard(BoardVO boardVO) throws Exception {
     	boardMapper.insertBoard(boardVO);
+    	
+    	System.out.println(TransactionSynchronizationManager.getCurrentTransactionName());
     }
 
     public BoardVO selectBoardOne(String bId) throws Exception {
@@ -45,6 +51,30 @@ public class BoardService {
     	boardMapper.insertReply(param);
     }
     
+    //@Transactional()
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public void tranTest() 
+	{
+		
+		System.out.println(TransactionSynchronizationManager.getCurrentTransactionName());
+/*		
+		try {*/
+			
+			BoardVO bo = new BoardVO();
+			bo.setbName("¿Ã∏ß");
+			bo.setbContent("ƒ¡≈Ÿ√˜");
+			bo.setbTitle("¡¶∏Ò");	
+			
+			boardMapper.insertBoard(bo);
+			bo=null;
+			boardMapper.insertBoard(bo);	
+			
+/*		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}*/
+
+	}
     
     /*
     public List<BoardVO> selectBoardListPage(Criteria criteria)  {
