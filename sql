@@ -34,12 +34,6 @@ Spring ​Framework 에서 제공하는 Transaction 을 사용하는 방법은 �
 설명한 3가지 방식 모두 설정해서 사용해도 된다.
 하지만 무조건 통일적인 방식으로 할것 
 
-다음과 같이 빈의 클래스에 직접 @Transactional 을 적용할 수도 있다.
+빈의 클래스에 직접 @Transactional 을 적용할 수도 있다.
 
-http://blog.naver.com/tkstone/50193141378
 
-select * from mvc_board order by bid desc;
-
-delete from mvc_board where bid BETWEEN 6704 and 100000;
-
-commit;
